@@ -1,11 +1,10 @@
-import { getHotMovie, getMovie } from "./connect";
+import { getHotMovie } from "./connect";
 
 const carousel = async() => {
     let arrMovie=[];
-
 try{
 const movies=await getHotMovie();
-console.log(movies);
+// console.log(movies);
 arrMovie=movies.data;
 
 }catch(err){

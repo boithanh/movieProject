@@ -1,15 +1,26 @@
-import { getMovie } from "./connect";
+import { getLastestMovie } from "./connect";
 
 const newIn= async()=>{
 let arrMovie=[];
 
 try{
-const movies=await getMovie();
-console.log(movies);
+const movies=await getLastestMovie();
+// console.log(movies);
 arrMovie=movies.data;
 
 }catch(err){
 console.log(err);
+}
+
+function randomStar(rating){
+    switch (true){
+        case rating>=1 && rating<2:return `<i class="fa fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>`;
+        case rating>=2 && rating<3:return `<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>`;
+        case rating>=3 && rating<4:return `<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>`;
+        case rating>=4 && rating<5:return `<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa-regular fa-star"></i>`;
+        case rating>=5:return `<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>`;
+        default:return `<i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>`
+    }
 }
     return`
     <!-- NEW IN -->
@@ -20,7 +31,7 @@ console.log(err);
                 <div class="row">
                     ${
                           arrMovie.map((item,index)=>{
-                            const {poster,genres,title,plot,imdb}=item;
+                            const {poster,genres,title,plot,imdb,tomatoes}=item;
                             return `
                              <div class="col-6 col-sm-6 col-md-3 col-lg-3 col-xl-3">
                         <div class="newIn__img">
@@ -37,12 +48,7 @@ console.log(err);
                         <div class="newIn__title">
                             <h3>${title}</h3>
                             <p>
-                            ${
-                                (imdb.votes<=500 && imdb.votes >=1000)?`<i class="fa fa-star"></i>` ?
-                                 (imdb.votes<=1000 &&imdb.votes >=1300): `<i class="fa fa-star"></i><i class="fa fa-star"></i>`?
-                                  (imdb.votes<=1300 &&imdb.votes >=1600): `<i class="fa fa-star"></i><i class="fa fa-star"></i>`:`<i class="fa fa-star"></i><i class="fa fa-star"></i>`
-                            }
-                            
+                            ${randomStar(tomatoes.viewer.rating)}
                             </p>
                         </div>
                     </div>

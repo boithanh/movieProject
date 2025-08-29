@@ -1,12 +1,14 @@
 import axios from 'axios';
+const prod='https://movieservice-oeai.onrender.com/movie';
+const dev='http://localhost:3000/movie';
 const http = axios.create({
-  baseURL: 'https://movieservice-oeai.onrender.com/movie',
+  baseURL: prod,
   timeout: 5000,
   headers: {}
 });
 
-async function getMovie() {
-    const response = await http.get('/');
+async function getLastestMovie() {
+    const response = await http.get('/lastest');
     return response;
 }
 
@@ -15,4 +17,15 @@ async function getHotMovie() {
     return response;  
 }
 
-export {getMovie,getHotMovie}
+async function getListMovie() {
+    const response = await http.get('/');
+    return response;  
+}
+
+async function getComingsoonMovie(){
+    const response=await http.get("/coming-soon");
+    return response;
+}
+
+
+export {getLastestMovie,getHotMovie,getListMovie,getComingsoonMovie};
