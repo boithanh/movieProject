@@ -9,7 +9,7 @@ const body=async()=>{
     ${await newIn()}
     ${await showtime()}
     ${await comingsoon()}
-    ${movielist()}
+    ${await movielist()}
    `
 }
 

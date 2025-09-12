@@ -1,45 +1,30 @@
-const movielist=()=>{
+import { getListMovie2 } from "./connect";
+
+const movielist=async()=>{
+    let arrMovie=[];
+     try{
+const movies= await getListMovie2();
+arrMovie=movies.data;
+    }catch(err){
+console.log(err);
+    }
     return `
      <!-- MOVIE LIST -->
     <section class="movieList section">
         <div class="container">
             <div class="row">
-                <div class="col-4 col-lg-2 col-xl-2">
+                ${
+                    arrMovie.map((item)=>{
+                        return (
+                            `<div class="col-4 col-lg-2 col-xl-2 mt-3 mt-lg-0">
                     <div class="movieList__item">
-                        <img class="img-fluid" src="./img/movie-9.jpg" alt="">
+                        <img class="img-fluid" src=${item?.poster} alt="">
                         <div class="movieList__overlay"></div>
                     </div>
-                </div>
-                <div class="col-4 col-lg-2 col-xl-2">
-                    <div class="movieList__item">
-                        <img class="img-fluid" src="./img/movie-8.jpg" alt="">
-                        <div class="movieList__overlay"></div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-2 col-xl-2">
-                    <div class="movieList__item">
-                        <img class="img-fluid" src="./img/movie-11.jpg" alt="">
-                        <div class="movieList__overlay"></div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-2 col-xl-2 mt-3 mt-lg-0">
-                    <div class="movieList__item">
-                        <img class="img-fluid" src="./img/movie-13.jpg" alt="">
-                        <div class="movieList__overlay"></div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-2 col-xl-2 mt-3 mt-lg-0">
-                    <div class="movieList__item">
-                        <img class="img-fluid" src="./img/movie-12.jpg" alt="">
-                        <div class="movieList__overlay"></div>
-                    </div>
-                </div>
-                <div class="col-4 col-lg-2 col-xl-2 mt-3 mt-lg-0">
-                    <div class="movieList__item">
-                        <img class="img-fluid" src="./img/movie-14.jpg" alt="">
-                        <div class="movieList__overlay"></div>
-                    </div>
-                </div>
+                </div>`
+                        )
+                    })
+                }
             </div>
         </div>
     </section>

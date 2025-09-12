@@ -18,7 +18,12 @@ async function getHotMovie() {
 }
 
 async function getListMovie() {
-    const response = await http.get('/');
+    const response = await http.get('/list');
+    return response;  
+}
+
+async function getListMovie2() {
+    const response = await http.get('/list_2');
     return response;  
 }
 
@@ -28,4 +33,4 @@ async function getComingsoonMovie(){
 }
 
 
-export {getLastestMovie,getHotMovie,getListMovie,getComingsoonMovie};
+export {getLastestMovie,getHotMovie,getListMovie,getComingsoonMovie,getListMovie2};
