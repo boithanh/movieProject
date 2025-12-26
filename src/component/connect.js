@@ -1,36 +1,41 @@
-import axios from 'axios';
-const prod='https://movieservice-oeai.onrender.com/movie';
-const dev='http://localhost:3000/movie';
+import axios from "axios";
+const prod = "https://movieservice-oeai.onrender.com/movie";
+const dev = "http://localhost:3001/movie";
 const http = axios.create({
   baseURL: prod,
   timeout: 5000,
-  headers: {}
+  headers: {},
 });
 
 async function getLastestMovie() {
-    const response = await http.get('/lastest');
-    return response;
+  const response = await http.get("/lastest");
+  return response;
 }
 
 async function getHotMovie() {
-    const response = await http.get('/hot');
-    return response;  
+  const response = await http.get("/hot");
+  return response;
 }
 
 async function getListMovie() {
-    const response = await http.get('/list');
-    return response;  
+  const response = await http.get("/list");
+  return response;
 }
 
 async function getListMovie2() {
-    const response = await http.get('/list_2');
-    return response;  
+  const response = await http.get("/list_2");
+  return response;
 }
 
-async function getComingsoonMovie(){
-    const response=await http.get("/coming-soon");
-    return response;
+async function getComingsoonMovie() {
+  const response = await http.get("/coming-soon");
+  return response;
 }
 
-
-export {getLastestMovie,getHotMovie,getListMovie,getComingsoonMovie,getListMovie2};
+export {
+  getLastestMovie,
+  getHotMovie,
+  getListMovie,
+  getComingsoonMovie,
+  getListMovie2,
+};
